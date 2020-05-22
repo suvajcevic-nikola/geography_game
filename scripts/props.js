@@ -29,13 +29,4 @@ proposition.addEventListener('submit', e => {
     proposition.reset();
 });
 
-// db.collection('pojmovi').get().then( (snapshot) => {
-//     snapshot.docs.forEach(doc => {
-//         console.log(doc.data().korisnik);
-//     })
-// });
-
 user.getProps(user.render);
-
-
-
