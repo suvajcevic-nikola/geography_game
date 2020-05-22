@@ -1,0 +1,167 @@
+* {
+    text-decoration: none;
+    box-sizing: border-box;
+}
+body {
+    background: url(./images/pozadina.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-color: rgb(16, 0, 32);
+}
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+.item1 {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 30px;
+    font-family: "Times New Roman", Times, serif;
+    /* display: none; */
+}
+.item2 {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    font-size: 30px;
+    font-family: "Times New Roman", Times, serif;
+    display: block;
+    position: relative;
+}
+h1 {
+    float: left;
+    font-size: 3em;
+    margin: 1em auto;
+    width: 70%;
+}
+.item4 {
+    display: none;
+    transform: scaleX(0);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    font-size: 30px;
+    font-family: "Times New Roman", Times, serif;
+}
+.item5 {
+    display: none;
+    transform: scaleX(0);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    font-size: 30px;
+    font-family: "Times New Roman", Times, serif;
+}
+.show {
+    display: block;
+    animation: slide-menu .5s forwards .2s ease-in-out;
+}
+@keyframes slide-menu {
+    from {
+        transform: translateY(15%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+.hidden {
+    display: none;
+    opacity: 0;
+}
+a {
+    font-size: 25px;
+    float: left;
+}
+a:hover{
+    color: rgb(248, 182, 0);
+}
+.homeBtn{
+    color: white;
+    margin-right: 20px;
+}
+.propBtn{
+    color: white;
+    margin-right: 20px;
+}
+.fameBtn{
+    color: white;
+    margin-right: 20px;
+}
+.proposition{
+    margin-top: 5%;
+    margin-left: auto;
+    margin-bottom: auto;
+    margin-right: auto;
+}
+input[type=text] {
+    width: auto;
+    height: auto;
+    padding: 12px;
+    margin: 10px;
+    box-sizing: border-box;
+    border: none;
+    background-color: rgb(21, 20, 131, 0.25);
+    color: white;
+    font-size: large;
+}
+input[type=submit]  {
+    border: none;
+    background-color: rgb(248, 182, 0);
+    color: rgb(255, 255, 255);
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+}
+@media only screen and (max-width: 600px) {
+    body {
+      background-image: url(./images/mobile.jpg);
+      background-repeat: no-repeat;
+      background-color: rgb(16, 0, 32);
+    }
+    [class*="col-"] {
+        width: 100%;
+    }
+    h1 {
+        font-size: 1em;
+        float: none;
+    }
+    a {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    #propImg {
+        max-width: 100%;
+        height: auto;
+    }
+}

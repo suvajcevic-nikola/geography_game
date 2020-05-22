@@ -3,6 +3,7 @@ import { Game } from "./game.js";
 let usernameForm = document.querySelector("#usernameForm");
 let usernameInput = document.querySelector("#usernameInput");
 let menu = document.querySelector(".menu");
+let homeBtn = document.querySelector(".homeBtn");
 
 let checkUsername = () => {
     if(localStorage.username){
@@ -13,18 +14,12 @@ let checkUsername = () => {
 }
 
 let user = new Game(checkUsername());
-console.log(user);
+export {user};
 
 let check = () => {
     if(checkUsername() != "anonymous"){
-        return usernameForm.innerHTML = ``,
-        menu.innerHTML = `
-        <a href="/predlog_pojmova.html">Predlog pojmova</a>
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
-        <a href="#">Link 4</a>
-        `;
+        usernameForm.innerHTML = `<label for="username">Korisnik: ${localStorage.username}</label>`
+        menu.style.display = "block";
     }
 }
 check();
@@ -35,12 +30,9 @@ usernameForm.addEventListener ('submit', e => {
         user.updateUsername(usernameInput.value);
         usernameForm.reset();
         check();
-        menu.innerHTML = `
-        <a href="/predlog_pojmova.html">Predlog pojmova</a>
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
-        <a href="#">Link 4</a>
-        `;
     } else alert("Unesite korisnicko ime");
 });
+
+homeBtn.onclick = function() {
+    location.reload();
+};
