@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./css/style.css">
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
     <title>Pocetna</title>
 </head>
 <body>
 
-    <div class="col-12">
+    <div class="col-12 before">
         <div class="col-9 menu" style="display:none">
-                <a href="#" class="homeBtn">Početna</a>
-                <a href="#" class="propBtn">Unesite predlog</a>
+                <a href="./index.html" class="homeBtn">Početna</a>
+                <a href="#" class="propBtn">Predlozi</a>
                 <a href="#" class="fameBtn">Hall of Fame</a>
         </div>
-        <div class="col-3 item1">
+        <div class="col-3 item1" id="current">
             <form id="usernameForm">
-                <label for="username">Unesite korisnicko ime:</label><br>
+                <label for="username">Unesi nadimak:</label><br>
                 <input type="text" name="usernameInput" id="usernameInput"><br>
                 <input type="submit" value="Potvrdi" id="btnSend" class="btn">
             </form>
@@ -25,6 +26,9 @@
     </div>
 
     <div class="col-12 item2">
+        <div class="col-3" id="playDiv">
+            <h2 id="playBtn">Počni igru</h2>
+        </div>
         <h1>Zanimljiva geografija</h1>
     </div>
 
@@ -33,14 +37,14 @@
             <img src="./images/propslika2.png" alt="" id="propImg">
         </div>
         <form class="col-9 proposition">
-            <label for="category" id="categoryLabel">Izaberite kategoriju:</label>
+            <label for="category" id="categoryLabel">Izaberi kategoriju:</label>
             <select id="category" name="category">
                 <option value="Drzava">Drzava</option>
                 <option value="Grad">Grad</option>
                 <option value="Reka">Reka</option>
                 <option value="Planina">Planina</option>
             </select><br>
-            <label for="inputTerm">Unesite pojam:</label>
+            <label for="inputTerm">Unesi pojam:</label>
             <input type="text" name="term" id="term"><br>
             <input type="submit" value="Potvrdi" id="btnSend" class="btn">
         </form>
@@ -48,11 +52,51 @@
 
     <div class="col-12 item5">
         <div class="top"></div>
+    </div>
+    <div class="col-12 intro" id="intro">
+        <h1>Igra</h1>
+        <h2 id="introMsg">Imate 90 skundi!</h2>
+    </div>
+    <div class="col-12 result" id="result">
+        <h2>Rezultat</h2>
+        <div class="col-4" id="userResultUl">
+            <h3 id="userH3"></h3><hr>
+        </div>
+        <div class="col-4" id="vsDiv">
+            <h3>VS</h3><hr>
+            <li>Drzava</li>
+            <li>Grad</li>
+            <li>Reka</li>
+        </div>
+        <div class="col-4" id="computerResultUl">
+            <h3 id="compH3">Kompjuter</h3><hr>
+        </div>
+    </div>
+    <div class="col-12 item6">
+        <div class="play" id="play">
+            <div id="lettAndTime">
+                <div id="countdown"></div>
+            </div>
+            <div class="col-4"><b id="firstPlayer">Igrac</b></div>
+            <div class="col-4"><b id="versus">vs</b></div>
+            <div class="col-4"><b id="secondPlayer">Kompjuter</b></div>
+            <hr>
+            <form class="col-12" id="prop">
+                <label for="inputCountr">Drzava:</label>
+                <input type="text" name="Drzava" id="country" autocomplete="off">
+
+                <label for="inputCity">Grad:</label>
+                <input type="text" name="Grad" id="city" autocomplete="off">
+
+                <label for="inputRiver">Reka</label>
+                <input type="text" name="Reka" id="river" autocomplete="off">
+            </form>
+        </div>
+    </div>
 
     <script src="scripts/app.js" type="module"></script>
     <script src="scripts/game.js" type="module"></script>
     <script src="scripts/props.js" type="module"></script>
-    <script src="scripts/hallFame.js" type="module"></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>

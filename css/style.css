@@ -1,0 +1,332 @@
+@font-face {
+    font-family: 'PricedownBl-Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('../fonts/pricedown bl.woff'), url('../fonts/pricedown\ bl.woff') format('woff');
+    }
+* {
+    text-decoration: none;
+    box-sizing: border-box;
+    /* font-family: "Times New Roman", Times, serif; */
+    font-family: "PricedownBl-Regular";
+}
+body {
+    background: url(../images/pozadina.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-color: rgb(16, 0, 32);
+}
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+.item1 {
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 35px;
+    margin-top: 8.5px;
+}
+.item2 {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: rgb(255, 255, 255);
+    text-align: left;
+    display: block;
+    position: fixed;
+    margin-bottom: 120px;
+    margin-left: 50px;
+    bottom: 0;
+}
+h1 {
+    float: left;
+    font-size: 8em;
+    margin: 0 0;
+    width: 100%;
+    -webkit-text-stroke: 2.5px black;
+}
+h2 {
+    float: left;
+    font-size: 3em;
+    margin: 0 0;
+    width: 100%;
+    color: rgb(248, 182, 0);
+    -webkit-text-stroke: 1px black;
+}
+h2:hover {
+    color: rgb(165, 165, 165);
+    cursor: pointer;
+    -webkit-text-stroke: 0px black;
+}
+.item4 {
+    display: none;
+    transform: scaleX(0);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    font-size: 30px;
+}
+.item5 {
+    display: none;
+    transform: scaleX(0);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    font-size: 30px;
+}
+.item6 {
+    display: none;
+    transform: scaleX(0);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    font-size: 30px;
+}
+.intro {
+    display: none;
+    transform: scaleX(0);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    font-size: 25px;
+}
+.result {
+    display: none;
+    transform: scaleX(0);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    font-size: 25px;
+}
+.result h2 {
+    color: rgb(165, 165, 165);
+}
+#userRes {
+    float: left;
+    color: rgb(248, 182, 0);
+    text-align: center;
+}
+#compRes {
+    float: left;
+    text-align: center;
+}
+#vsDiv {
+    float: left;
+    color: rgb(165, 165, 165);
+}
+#userRes ul, #compRes ul, #vsDiv ul {
+    margin-right: 10%;
+}
+/* #userResultUl {
+    width: 33.33%;
+    float: left;
+}
+#computerResultUl {
+    width: 33.33%;
+    float: left;
+} */
+.show {
+    display: block;
+    animation: slide-menu .5s forwards .2s ease-in-out;
+}
+@keyframes slide-menu {
+    from {
+        transform: translateY(15%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+.hidden {
+    display: none;
+    opacity: 0;
+}
+a {
+    font-size: 35px;
+    float: left;
+}
+a:hover{
+    color: rgb(248, 182, 0);
+}
+.homeBtn{
+    color:white;
+    margin-right: 20px;
+}
+.propBtn{
+    color:white;
+    margin-right: 20px;
+}
+.fameBtn{
+    color:white;
+    margin-right: 20px;
+}
+.proposition{
+    margin-top: 5%;
+    margin-left: auto;
+    margin-bottom: auto;
+    margin-right: auto;
+}
+input[type=text], select {
+    width: auto;
+    height: auto;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    background-color: rgb(21, 20, 131, 0.25);
+    -webkit-text-stroke: 1px black;
+    color: white;
+    font-size: 35px;
+    text-align: center;
+}
+#category {
+    width: 50%;
+}
+#term {
+    width: 58.8%;
+}
+#prop input[type=text], #prop select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+input[type=submit] {
+    border: none;
+    background-color: rgb(248, 182, 0);
+    color: rgb(255, 255, 255);
+    -webkit-text-stroke: 1px black;
+    padding: 14px 28px;
+    font-size: 20px;
+    cursor: pointer;
+    position: relative;
+}
+#usernameColor {
+    color: rgb(248, 182, 0);
+}
+#down {
+    position: relative;
+    cursor: pointer;
+}
+/* #down:hover {
+    color: rgb(165, 165, 165);
+} */
+ul {
+    list-style-type:none;
+    font-size: 25px;
+}
+.arrow {
+    margin-left: 15px;
+    margin-top: 6.5px;
+    position: absolute;
+}
+#li1:hover {
+    color: rgb(165, 165, 165);
+    cursor: pointer;
+}
+#userOptions {
+    display: none;
+}
+#fameh2:hover {
+    color: rgb(248, 182, 0);
+    cursor: auto;
+    -webkit-text-stroke: 1px black;
+}
+#btnSend{
+    border-style: solid;
+    border-color: black;
+    border-radius: 5px;
+}
+#btnSend:hover{
+    background-color: rgb(253, 198, 45);
+}
+#playH1{
+    font-size: 2em;
+}
+#versus{
+    font-size: 1.5em;
+    text-align: center;
+    color: rgb(248, 182, 0);
+}
+#firstPlayer, #secondPlayer {
+    font-size: 1.5em;
+}
+@media only screen and (max-width: 600px) {
+    * {
+        -webkit-text-stroke: 1px black;
+    }
+    body {
+      background-image: url(../images/mobile.jpg);
+      background-repeat: no-repeat;
+      background-color: rgb(16, 0, 32);
+    }
+    [class*="col-"] {
+        width: 100%;
+    }
+    #down {
+        position: relative;
+        font-size: 25px;
+    }
+    #ul {
+        font-size: 20px;
+    }
+    .item2 {
+        background-color: rgba(0, 0, 0, 0.8);
+        color: rgb(255, 255, 255);
+        text-align: center;
+        display: block;
+        position: relative;
+        margin: 0;
+    }
+    h1 {
+        font-size: 2.5em;
+        float: none;
+    }
+    h2 {
+        font-size: 2em;
+        float: none;
+    }
+    a {
+        content: "";
+        clear: both;
+        display: table;
+        font-size: 25px;
+    }
+    #propImg {
+        max-width: 100%;
+        height: auto;
+    }
+    #fameh2 {
+        font-size: 35px;
+    }
+}
