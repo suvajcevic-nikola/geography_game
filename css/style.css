@@ -127,30 +127,10 @@ h2:hover {
 .result h2 {
     color: rgb(165, 165, 165);
 }
-#userRes {
-    float: left;
-    color: rgb(248, 182, 0);
-    text-align: center;
-}
-#compRes {
-    float: left;
-    text-align: center;
-}
 #vsDiv {
     float: left;
     color: rgb(165, 165, 165);
 }
-#userRes ul, #compRes ul, #vsDiv ul {
-    margin-right: 10%;
-}
-/* #userResultUl {
-    width: 33.33%;
-    float: left;
-}
-#computerResultUl {
-    width: 33.33%;
-    float: left;
-} */
 .show {
     display: block;
     animation: slide-menu .5s forwards .2s ease-in-out;
@@ -242,6 +222,10 @@ input[type=submit] {
     color: rgb(165, 165, 165);
 } */
 ul {
+    list-style-type:none;
+    font-size: 25px;
+}
+li {
     list-style-type:none;
     font-size: 25px;
 }

@@ -142,43 +142,6 @@ let showResult = () => {
 
     document.getElementById('userH3').innerHTML = `${localStorage.username}`;
 
-    // let userResDiv = document.createElement('div');
-    // userResDiv.setAttribute("class", "col-4");
-    // userResDiv.setAttribute("id", "userRes");
-    // userResDiv.innerHTML = `
-    // <h3>${localStorage.username}</h3><hr>
-    // `;
-    // let ulU = document.createElement('ul');
-    // ulU.setAttribute("id", "userResultUl");
-    // ulU.setAttribute("class", "col-4");
-    // userResDiv.appendChild(ulU);
-    // document.getElementById('result').appendChild(userResDiv);
-
-    // let vsDiv = document.createElement('div');
-    // vsDiv.setAttribute("class", "col-4");
-    // vsDiv.setAttribute("id", "vsDiv");
-    // vsDiv.innerHTML = `
-    // <h3>VS</h3><hr>
-    // <ul>
-    //     <li>Drzava</li>
-    //     <li>Grad</li>
-    //     <li>Reka</li>
-    // </ul>
-    // `;
-    // document.getElementById('result').appendChild(vsDiv);
-
-    // let compResDiv = document.createElement('div');
-    // compResDiv.setAttribute("class", "col-4");
-    // compResDiv.setAttribute("id", "compRes");
-    // compResDiv.innerHTML = `
-    // <h3>Kompjuter</h3><hr>
-    // `;
-    // let ulC = document.createElement('ul');
-    // ulC.setAttribute("id", "computerrResultUl");
-    // ulC.setAttribute("class", "col-4");
-    // compResDiv.appendChild(ulC);
-    // document.getElementById('result').appendChild(compResDiv);
-
     user.resultCalculator(localStorage.userDrzava, localStorage.computerDrzava);
     user.resultCalculator(localStorage.userGrad, localStorage.computerGrad);
     user.resultCalculator(localStorage.userReka, localStorage.computerReka);
