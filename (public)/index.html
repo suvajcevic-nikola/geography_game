@@ -39,14 +39,19 @@
         <form class="col-9 proposition">
             <label for="category" id="categoryLabel">Izaberi kategoriju:</label>
             <select id="category" name="category">
-                <option value="Drzava">Drzava</option>
+                <option value="Država">Država</option>
                 <option value="Grad">Grad</option>
                 <option value="Reka">Reka</option>
                 <option value="Planina">Planina</option>
+                <option value="Životinja">Životinja</option>
+                <option value="Biljka">Biljka</option>
+                <option value="Predmet">Predmet</option>
             </select><br>
             <label for="inputTerm">Unesi pojam:</label>
             <input type="text" name="term" id="term"><br>
             <input type="submit" value="Potvrdi" id="btnSend" class="btn">
+            <!-- <h3 style="color: red;">Trenutno je onemogućeno -->
+            <br> dodavanje predloga!</h3>
         </form>
     </div>
 
@@ -64,9 +69,14 @@
         </div>
         <div class="col-4" id="vsDiv">
             <h3>VS</h3><hr>
-            <li>Drzava</li>
+            <li>Država</li>
             <li>Grad</li>
             <li>Reka</li>
+            <li>Planina</li>
+            <li>Životinja</li>
+            <li>Biljka</li>
+            <li>Predmet</li>
+            <b id="noWin"></b>
         </div>
         <div class="col-4" id="computerResultUl">
             <h3 id="compH3">Kompjuter</h3><hr>
@@ -77,19 +87,31 @@
             <div id="lettAndTime">
                 <div id="countdown"></div>
             </div>
-            <div class="col-4"><b id="firstPlayer">Igrac</b></div>
+            <div class="col-4"><b id="firstPlayer" style="color:rgb(248, 182, 0);">Igrac</b></div>
             <div class="col-4"><b id="versus">vs</b></div>
             <div class="col-4"><b id="secondPlayer">Kompjuter</b></div>
             <hr>
             <form class="col-12" id="prop">
-                <label for="inputCountr">Drzava:</label>
-                <input type="text" name="Drzava" id="country" autocomplete="off">
+                <label for="inputCountr">Država:</label>
+                <input type="text" name="Država" id="country" autocomplete="off">
 
                 <label for="inputCity">Grad:</label>
                 <input type="text" name="Grad" id="city" autocomplete="off">
 
                 <label for="inputRiver">Reka</label>
                 <input type="text" name="Reka" id="river" autocomplete="off">
+
+                <label for="inputMountain">Planina</label>
+                <input type="text" name="Planina" id="mountain" autocomplete="off">
+
+                <label for="inputAnimal">Životinja</label>
+                <input type="text" name="Životinja" id="animal" autocomplete="off">
+
+                <label for="">Biljka</label>
+                <input type="text" name="Biljka" id="plant" autocomplete="off">
+
+                <label for="">Predmet</label>
+                <input type="text" name="Predmet" id="item" autocomplete="off">
             </form>
         </div>
     </div>

@@ -260,7 +260,23 @@ li {
 #versus{
     font-size: 1.5em;
     text-align: center;
+    color: rgb(165, 165, 165);
+}
+#noWin {
     color: rgb(248, 182, 0);
+    font-size: 35px;
+}
+#winImg {
+    width: 100px;
+}
+#userH3 {
+    color: rgb(248, 182, 0);
+}
+#userResultUl {
+    -webkit-text-stroke: 1px black;
+}
+#computerResultUl {
+    -webkit-text-stroke: 1px black;
 }
 #firstPlayer, #secondPlayer {
     font-size: 1.5em;

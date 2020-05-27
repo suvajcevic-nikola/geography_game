@@ -13,6 +13,10 @@ let result = document.querySelector(".result");
 let country = document.querySelector("#country");
 let city = document.querySelector("#city");
 let river = document.querySelector("#river");
+let mountain = document.querySelector("#mountain");
+let animal = document.querySelector("#animal");
+let plant = document.querySelector("#plant");
+let item = document.querySelector("#item");
 
 let checkUsername = () => {
     if(localStorage.username){
@@ -75,48 +79,53 @@ fameBtn.onclick = () => {
 };
 
 playBtn.onclick = () => {
-    intro.classList.add('show');
-    title.classList.add("hidden");
+    if(checkUsername() != "anonymous"){
+        intro.classList.add('show');
+        title.classList.add("hidden");
 
-    let playGame = () => {
-        play.classList.add('show');
-        intro.classList.add("hidden");
-        setTimeout(timer, 5000);
-    };
+        let playGame = () => {
+            play.classList.add('show');
+            intro.classList.add("hidden");
+            setTimeout(timer, 10000);
+        };
 
-    setTimeout(playGame, 2500);
+        setTimeout(playGame, 2500);
 
-    localStorage.setItem('firstLetter', user.getRandomLetter(1));
+        localStorage.setItem('firstLetter', user.getRandomLetter(1));
 
-    let lett = document.createElement("h1");
-    lett.setAttribute("id", "playH1")
-    lett.innerHTML = `Slovo: ${localStorage.firstLetter}`;
-    document.getElementById('lettAndTime').appendChild(lett);
+        let lett = document.createElement("h1");
+        lett.setAttribute("id", "playH1")
+        lett.innerHTML = `Slovo: ${localStorage.firstLetter}`;
+        document.getElementById('lettAndTime').appendChild(lett);
 
-    let timeleft = 7;
-    let downloadTimer = setInterval(function(){
-    if(timeleft <= 0){
-        clearInterval(downloadTimer);
-        document.getElementById("countdown").innerHTML = "Vreme je isteklo!";
-    } else {
-        document.getElementById("countdown").innerHTML = timeleft;
-    }
-    timeleft -= 1;
-    }, 1000);
+        let timeleft = 10;
+        let downloadTimer = setInterval(function(){
+        if(timeleft <= 0){
+            clearInterval(downloadTimer);
+            document.getElementById("countdown").innerHTML = "Vreme je isteklo!";
+        } else {
+            document.getElementById("countdown").innerHTML = timeleft;
+        }
+        timeleft -= 1;
+        }, 1000);
 
-    let introLett = document.createElement("h2");
-    introLett.setAttribute("id", "introLett");
-    introLett.innerHTML = `Slovo: ${localStorage.firstLetter}`;
-    document.getElementById('intro').appendChild(introLett);
+        let introLett = document.createElement("h2");
+        introLett.setAttribute("id", "introLett");
+        introLett.innerHTML = `Slovo: ${localStorage.firstLetter}`;
+        document.getElementById('intro').appendChild(introLett);
+
+        document.getElementById("firstPlayer").innerHTML = `${localStorage.username}`;
+
+    } else alert("Unesite korisnicko ime");
 };
 
 let checkUserAnswers = (value, category, firstLetter) => {
-    if(firstLetter == (user.firstLetter(value.charAt(0))).toUpperCase()) {
+    if(firstLetter == (user.firstLetter(value)).toUpperCase()) {
         user.checkTerm(value, category, data => {
         if(data) {
             localStorage.setItem(`user${category}`, false);
         } else {
-            localStorage.setItem(`user${category}`, user.firstLetter(value));
+            localStorage.setItem(`user${category}`, user.stringCheck(value));
         }
     });
     } else localStorage.setItem(`user${category}`, false);
@@ -124,12 +133,22 @@ let checkUserAnswers = (value, category, firstLetter) => {
 
 let timer = () => {
     console.log(localStorage.firstLetter);
+
     checkUserAnswers(country.value, country.name, localStorage.firstLetter);
     checkUserAnswers(city.value, city.name, localStorage.firstLetter);
     checkUserAnswers(river.value, river.name, localStorage.firstLetter);
-    user.randomPick(localStorage.firstLetter, "Drzava", user.computerAnswerCountry);
+    checkUserAnswers(mountain.value, mountain.name, localStorage.firstLetter);
+    checkUserAnswers(animal.value, animal.name, localStorage.firstLetter);
+    checkUserAnswers(plant.value, plant.name, localStorage.firstLetter);
+    checkUserAnswers(item.value, item.name, localStorage.firstLetter);
+
+    user.randomPick(localStorage.firstLetter, "Država", user.computerAnswerCountry);
     user.randomPick(localStorage.firstLetter, "Grad", user.computerAnswerCity);
     user.randomPick(localStorage.firstLetter, "Reka", user.computerAnswerRiver);
+    user.randomPick(localStorage.firstLetter, "Planina", user.computerAnswerMountain);
+    user.randomPick(localStorage.firstLetter, "Životinja", user.computerAnswerAnimal);
+    user.randomPick(localStorage.firstLetter, "Biljka", user.computerAnswerPlant);
+    user.randomPick(localStorage.firstLetter, "Predmet", user.computerAnswerItem);
 
     setTimeout(showResult, 2500);
 
@@ -142,9 +161,15 @@ let showResult = () => {
 
     document.getElementById('userH3').innerHTML = `${localStorage.username}`;
 
-    user.resultCalculator(localStorage.userDrzava, localStorage.computerDrzava);
+    user.resultCalculator(localStorage.userDržava, localStorage.computerDržava);
     user.resultCalculator(localStorage.userGrad, localStorage.computerGrad);
     user.resultCalculator(localStorage.userReka, localStorage.computerReka);
+    user.resultCalculator(localStorage.userPlanina, localStorage.computerPlanina);
+    user.resultCalculator(localStorage.userŽivotinja, localStorage.computerŽivotinja);
+    user.resultCalculator(localStorage.userBiljka, localStorage.computerBiljka);
+    user.resultCalculator(localStorage.userPredmet, localStorage.computerPredmet);
+
+    user.score();
 };
 
 

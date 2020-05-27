@@ -6,6 +6,8 @@ export class Game{
         this.userArr = [];
         this.computerArr = [];
         this.userAnswerArr =[];
+        this.userPoints = [];
+        this.computerPoints = [];
     }
 
     set username(user){
@@ -21,14 +23,38 @@ export class Game{
         localStorage.setItem("username", upUsername);
     }
 
-    firstLetter(string){
-        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    // firstLetter(string){
+    //     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    // }
+
+    firstLetter(string) {
+        let str;
+        if(string.slice(0, 2) == 'Nj' ||
+            string.slice(0, 2) == 'Dž' ||
+            string.slice(0, 2) == 'Lj') {
+            str = string.slice(0, 2);
+        } else {
+            str = string.slice(0, 1);
+        }
+        return str;
+    }
+
+    stringCheck(string) {
+        let newStr = string
+        //delete spaces and tabs
+            .replace(/\s+/g, '')
+            //delete all special characters and numbers
+            .replace(/[^a-zđščžć]+/gi, '')
+            //only first letter uppercase
+            .replace(/(\B)[^ ]*/g, match => (match.toLowerCase()))
+            .replace(/^[^ ]/g, match => (match.toUpperCase()));
+        return newStr;
     }
 
     checkTerm(term, category, callback) {
         let x = true;
         this.terms
-                .where("pojam", "==", this.firstLetter(term))
+                .where("pojam", "==", this.stringCheck(term))
                 .where("kategorija", "==", category)
                 .get()
                 .then( snapshot => {
@@ -44,25 +70,14 @@ export class Game{
                   });
     }
 
-    userAnswers(term, category){
-
-        let docProp = {
-            pocetno_slovo: this.firstLetter(term.charAt(0)),
-            kategorija: category,
-            pojam: this.firstLetter(term),
-            korisnik: this.username
-        }
-        console.log(docProp);
-    }
-
     async addProp(term, category){
 
         let date = new Date();
 
         let docProp = {
-            pocetno_slovo: this.firstLetter(term.charAt(0)),
+            pocetnoSlovo: this.firstLetter(term),
             kategorija: category,
-            pojam: this.firstLetter(term),
+            pojam: this.stringCheck(term),
             korisnik: this.username,
             vreme: firebase.firestore.Timestamp.fromDate(date)
         }
@@ -130,7 +145,7 @@ export class Game{
     }
 
     randomPick(letter, category, callback){
-        this.terms.where("pocetno_slovo", "==", letter).where("kategorija", "==", category).get().then( snapshot => {
+        this.terms.where("pocetnoSlovo", "==", letter).where("kategorija", "==", category).get().then( snapshot => {
             snapshot.docs.forEach(doc => {
                 this.computerArr.push(doc.data().pojam);
             });
@@ -146,9 +161,9 @@ export class Game{
     computerAnswerCountry(string, probability){
         if(probability == 1){
             if(string == undefined){
-                localStorage.setItem(`computerDrzava`, false);
-            } else localStorage.setItem(`computerDrzava`, string);
-        } else localStorage.setItem(`computerDrzava`, false);
+                localStorage.setItem(`computerDržava`, false);
+            } else localStorage.setItem(`computerDržava`, string);
+        } else localStorage.setItem(`computerDržava`, false);
         // console.log(string, probability);
 
     }
@@ -171,42 +186,114 @@ export class Game{
         // console.log(string, probability);
     }
 
+    computerAnswerMountain(string, probability){
+        if(probability == 1){
+            if(string == undefined){
+                localStorage.setItem(`computerPlanina`, false);
+            } else localStorage.setItem(`computerPlanina`, string);
+        } else localStorage.setItem(`computerPlanina`, false);
+        // console.log(string, probability);
+    }
+
+    computerAnswerAnimal(string, probability){
+        if(probability == 1){
+            if(string == undefined){
+                localStorage.setItem(`computerŽivotinja`, false);
+            } else localStorage.setItem(`computerŽivotinja`, string);
+        } else localStorage.setItem(`computerŽivotinja`, false);
+        // console.log(string, probability);
+    }
+
+    computerAnswerPlant(string, probability){
+        if(probability == 1){
+            if(string == undefined){
+                localStorage.setItem(`computerBiljka`, false);
+            } else localStorage.setItem(`computerBiljka`, string);
+        } else localStorage.setItem(`computerBiljka`, false);
+        // console.log(string, probability);
+    }
+
+    computerAnswerItem(string, probability){
+        if(probability == 1){
+            if(string == undefined){
+                localStorage.setItem(`computerPredmet`, false);
+            } else localStorage.setItem(`computerPredmet`, string);
+        } else localStorage.setItem(`computerPredmet`, false);
+        // console.log(string, probability);
+    }
+
     resultCalculator(userAnswer, computerAnswer){
         if(userAnswer !='false' && computerAnswer !='false'){
             if (userAnswer == computerAnswer){
                 let userLi = document.createElement('li');
-                userLi.innerHTML = `${userAnswer} - 5p`;
+                userLi.innerHTML = `${userAnswer} - 5 poena`;
                 document.getElementById('userResultUl').appendChild(userLi);
+                this.userPoints.push(5);
 
                 let compLi = document.createElement('li');
-                compLi.innerHTML = `${computerAnswer} - 5p`;
+                compLi.innerHTML = `${computerAnswer} - 5 poena`;
                 document.getElementById('computerResultUl').appendChild(compLi);
-
+                this.computerPoints.push(5);
             } else {
             let userLi = document.createElement('li');
-            userLi.innerHTML = `${userAnswer} - 5p`;
+            userLi.innerHTML = `${userAnswer} - 10 poena`;
             document.getElementById('userResultUl').appendChild(userLi);
+            this.userPoints.push(10);
 
             let compLi = document.createElement('li');
-            compLi.innerHTML = `${computerAnswer} - 5p`;
-            document.getElementById('computerResultUl').appendChild(compLi); };
+            compLi.innerHTML = `${computerAnswer} - 10 poena`;
+            document.getElementById('computerResultUl').appendChild(compLi);
+            this.computerPoints.push(10);
+            };
         } else if(userAnswer != 'false' && computerAnswer == 'false'){
             let userLi = document.createElement('li');
-            userLi.innerHTML = `${userAnswer} - 15p`;
+            userLi.innerHTML = `${userAnswer} - 15 poena`;
             document.getElementById('userResultUl').appendChild(userLi);
+            this.userPoints.push(15);
+
+            let compLi = document.createElement('li');
+            compLi.innerHTML = `${computerAnswer} - 0 poena`;
+            document.getElementById('computerResultUl').appendChild(compLi);
         }else if(userAnswer == 'false' && computerAnswer != 'false'){
             let compLi = document.createElement('li');
-            compLi.innerHTML = `${computerAnswer} - 15p`;
+            compLi.innerHTML = `${computerAnswer} - 15 poena`;
             document.getElementById('computerResultUl').appendChild(compLi);
+            this.computerPoints.push(15);
+
+            let userLi = document.createElement('li');
+            userLi.innerHTML = `${userAnswer} - 0 poena`;
+            document.getElementById('userResultUl').appendChild(userLi);
         }else {
             let userLi = document.createElement('li');
-            userLi.innerHTML = `${userAnswer} - 0p`;
+            userLi.innerHTML = `${userAnswer} - 0 poena`;
             document.getElementById('userResultUl').appendChild(userLi);
 
             let compLi = document.createElement('li');
-            compLi.innerHTML = `${computerAnswer} - 0p`;compLi
+            compLi.innerHTML = `${computerAnswer} - 0 poena`;
             document.getElementById('computerResultUl').appendChild(compLi);
         };
+    }
+
+    score(){
+        let userScore = this.userPoints.reduce((a, b) => a + b, 0);
+        let userLi = document.createElement('li');
+        userLi.innerHTML = `<b style="color: green;">Ukupno poena: ${userScore}<b/>`;
+        document.getElementById('userResultUl').appendChild(userLi);
+
+        let computerScore = this.computerPoints.reduce((a, b) => a + b, 0);
+        let compLi = document.createElement('li');
+        compLi.innerHTML = `<b style="color: green;">Ukupno poena: ${computerScore}<b/>`;
+        document.getElementById('computerResultUl').appendChild(compLi);
+
+        if(userScore > computerScore){
+            let userLi = document.createElement('li');
+            userLi.innerHTML = `<img src="./images/win.png" alt="winImg" id="winImg">`;
+            document.getElementById('userResultUl').appendChild(userLi);
+        }else if(userScore < computerScore){
+            let compLi = document.createElement('li');
+            compLi.innerHTML = `<img src="./images/win.png" alt="winImg" id="winImg">`;
+            document.getElementById('computerResultUl').appendChild(compLi);
+        }else document.getElementById('noWin').innerHTML = `Rezultat je nerešen!`;
     }
 
 }
