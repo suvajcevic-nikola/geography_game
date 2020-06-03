@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Test</h1>
+    <ul id="ullist"></ul>
+
+     <form action="/multiplayer" method="POST" id="multiGameForm" style="display: none;">
+        <label for="inputCountr">Država:</label>
+        <input type="text" name="drzava" id="drzava" autocomplete="off">
+
+        <label for="inputCity">Grad:</label>
+        <input type="text" name="grad" id="grad" autocomplete="off">
+
+        <label for="inputRiver">Reka</label>
+        <input type="text" name="reka" id="reka" autocomplete="off">
+
+        <label for="inputMountain">Planina</label>
+        <input type="text" name="planina" id="planina" autocomplete="off">
+
+        <label for="inputAnimal">Životinja</label>
+        <input type="text" name="zivotinja" id="zivotinja" autocomplete="off">
+
+        <label for="">Biljka</label>
+        <input type="text" name="biljka" id="biljka" autocomplete="off">
+
+        <label for="">Predmet</label>
+        <input type="text" name="predmet" id="predmet" autocomplete="off">
+
+        <input type="submit" name="done">
+    </form>
+
+    <div id="result"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./scripts/client.js"></script>
+</body>
+</html>

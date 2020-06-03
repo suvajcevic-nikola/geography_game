@@ -1,0 +1,60 @@
+
+class Multiplayer {
+    constructor(p1, p2) {
+    this._players = [p1, p2];
+    this._inputs = [null, null];
+
+    this._sendToPlayers('Game starts!');
+    this._displayForm();
+
+    this._players.forEach((player, idx) => {
+      player.on('input', (input) => {
+        this._onInput(idx, input);
+      });
+    });
+    }
+
+    _sendToPlayer(playerIndex, msg) {
+        this._players[playerIndex].emit('message', msg);
+    }
+
+    _sendToPlayers(msg) {
+        this._players.forEach((player) => {
+          player.emit('message', msg);
+          // console.log('Game starts');
+        });
+    }
+
+    _displayForm(){
+      this._players.forEach((player) => {
+        player.emit('form');
+      });
+    }
+
+    _onInput(playerIndex, input){
+      this._inputs[playerIndex] = input;
+      this._sendToPlayer(playerIndex, `You submited ${input}`);
+
+      this._gameOver();
+    }
+
+    _checkInputs(inputs) {
+      this._players.forEach((player) => {
+        player.emit('submitedInputs', inputs);
+        // console.log('Game starts');
+      });
+  }
+
+    _gameOver(){
+      const inputs = this._inputs;
+
+      if(inputs[0] && inputs[1]){
+         this._sendToPlayers('Game over' + ' ' + inputs.join(' : '));
+         console.log(this._inputs);
+         this._checkInputs(this._inputs);
+         this._inputs = [null, null];
+      };
+    }
+}
+
+module.exports = Multiplayer;
