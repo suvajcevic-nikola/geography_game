@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
 <body>
@@ -34,9 +36,36 @@
         <input type="submit" name="done">
     </form>
 
-    <div id="result"></div>
+    <div id="result">
+        <div id="player0Result"></div>
+        <div id="player1Result"></div>
+        <div id="noWin"></div>
+    </div>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script src="./scripts/client.js"></script>
+    <script src="./scripts/client.js" type="module"></script>
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-firestore.js"></script>
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+
+        <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCPm5qgN2lya_z_zaaNd5A0HN5WdmTVcbg",
+            authDomain: "geofija.firebaseapp.com",
+            databaseURL: "https://geofija.firebaseio.com",
+            projectId: "geofija",
+            storageBucket: "geofija.appspot.com",
+            messagingSenderId: "699947903788",
+            appId: "1:699947903788:web:15d9679497528d2b4f5a89",
+            measurementId: "G-RVRC6M75RF"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        let db = firebase.firestore();
+        </script>
 </body>
 </html>

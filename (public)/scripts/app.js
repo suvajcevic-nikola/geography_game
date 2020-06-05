@@ -119,28 +119,29 @@ playBtn.onclick = () => {
     } else alert("Unesite korisnicko ime");
 };
 
-let checkUserAnswers = (value, category, firstLetter) => {
-    if(firstLetter == (user.firstLetter(value)).toUpperCase()) {
-        user.checkTerm(value, category, data => {
-        if(data) {
-            localStorage.setItem(`user${category}`, false);
-        } else {
-            localStorage.setItem(`user${category}`, user.stringCheck(value));
-        }
-    });
-    } else localStorage.setItem(`user${category}`, false);
-}
+// let checkUserAnswers = (value, category, firstLetter, player) => {
+//     if(firstLetter == (user.firstLetter(value)).toUpperCase()) {
+//         user.checkTerm(value, category, data => {
+//         if(data) {
+//             localStorage.setItem(`${player}${category}`, false);
+//         } else {
+//             localStorage.setItem(`${player}${category}`, user.stringCheck(value));
+//         }
+//     });
+//     } else localStorage.setItem(`${player}${category}`, false);
+// }
+// export {checkUserAnswers};
 
 let timer = () => {
     console.log(localStorage.firstLetter);
 
-    checkUserAnswers(country.value, country.name, localStorage.firstLetter);
-    checkUserAnswers(city.value, city.name, localStorage.firstLetter);
-    checkUserAnswers(river.value, river.name, localStorage.firstLetter);
-    checkUserAnswers(mountain.value, mountain.name, localStorage.firstLetter);
-    checkUserAnswers(animal.value, animal.name, localStorage.firstLetter);
-    checkUserAnswers(plant.value, plant.name, localStorage.firstLetter);
-    checkUserAnswers(item.value, item.name, localStorage.firstLetter);
+    user.checkUserAnswers(country.value, country.name, localStorage.firstLetter, 'user');
+    user.checkUserAnswers(city.value, city.name, localStorage.firstLetter, 'user');
+    user.checkUserAnswers(river.value, river.name, localStorage.firstLetter, 'user');
+    user.checkUserAnswers(mountain.value, mountain.name, localStorage.firstLetter, 'user');
+    user.checkUserAnswers(animal.value, animal.name, localStorage.firstLetter, 'user');
+    user.checkUserAnswers(plant.value, plant.name, localStorage.firstLetter, 'user');
+    user.checkUserAnswers(item.value, item.name, localStorage.firstLetter, 'user');
 
     user.randomPick(localStorage.firstLetter, "Država", user.computerAnswerCountry);
     user.randomPick(localStorage.firstLetter, "Grad", user.computerAnswerCity);
@@ -161,15 +162,15 @@ let showResult = () => {
 
     document.getElementById('userH3').innerHTML = `${localStorage.username}`;
 
-    user.resultCalculator(localStorage.userDržava, localStorage.computerDržava);
-    user.resultCalculator(localStorage.userGrad, localStorage.computerGrad);
-    user.resultCalculator(localStorage.userReka, localStorage.computerReka);
-    user.resultCalculator(localStorage.userPlanina, localStorage.computerPlanina);
-    user.resultCalculator(localStorage.userŽivotinja, localStorage.computerŽivotinja);
-    user.resultCalculator(localStorage.userBiljka, localStorage.computerBiljka);
-    user.resultCalculator(localStorage.userPredmet, localStorage.computerPredmet);
+    user.resultCalculator(localStorage.userDržava, localStorage.computerDržava, 'userResultUl', 'computerResultUl');
+    user.resultCalculator(localStorage.userGrad, localStorage.computerGrad, 'userResultUl', 'computerResultUl');
+    user.resultCalculator(localStorage.userReka, localStorage.computerReka, 'userResultUl', 'computerResultUl');
+    user.resultCalculator(localStorage.userPlanina, localStorage.computerPlanina, 'userResultUl', 'computerResultUl');
+    user.resultCalculator(localStorage.userŽivotinja, localStorage.computerŽivotinja, 'userResultUl', 'computerResultUl');
+    user.resultCalculator(localStorage.userBiljka, localStorage.computerBiljka, 'userResultUl', 'computerResultUl');
+    user.resultCalculator(localStorage.userPredmet, localStorage.computerPredmet, 'userResultUl', 'computerResultUl');
 
-    user.score();
+    user.score('userResultUl', 'computerResultUl');
 };
 
 

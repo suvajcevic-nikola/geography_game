@@ -29,8 +29,7 @@ io.on('connection', (sock) => {
       sock.on('message', (text) => {
         io.emit('message', text);
       });
-})
-
+});
 
 
 

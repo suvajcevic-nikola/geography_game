@@ -6,6 +6,7 @@ class Multiplayer {
 
     this._sendToPlayers('Game starts!');
     this._displayForm();
+    this._getRandomLetter();
 
     this._players.forEach((player, idx) => {
       player.on('input', (input) => {
@@ -55,6 +56,18 @@ class Multiplayer {
          this._inputs = [null, null];
       };
     }
+
+    _getRandomLetter(){
+      let result           = '';
+      let characters       = 'ABCDEFGHIJKLMNOPRSTUVZŠĐŽČĆ';
+      let charactersLength = characters.length;
+      for ( let i = 0; i < 1; i++ ) {
+         result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      }
+      this._players.forEach((player) => {
+        player.emit('letter', result);
+      });
+   }
 }
 
 module.exports = Multiplayer;

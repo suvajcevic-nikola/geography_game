@@ -158,6 +158,22 @@ export class Game{
         });
     }
 
+    checkUserAnswers(value, category, firstLetter, player){
+        if(firstLetter == (this.firstLetter(value)).toUpperCase()) {
+            this.checkTerm(value, category, data => {
+            if(data) {
+                localStorage.setItem(`${player}${category}`, false);
+            } else {
+                localStorage.setItem(`${player}${category}`, this.stringCheck(value));
+            }
+        });
+        } else localStorage.setItem(`${player}${category}`, false);
+    }
+
+    console(value){
+        console.log(value);
+    }
+
     computerAnswerCountry(string, probability){
         if(probability == 1){
             if(string == undefined){
@@ -222,77 +238,77 @@ export class Game{
         // console.log(string, probability);
     }
 
-    resultCalculator(userAnswer, computerAnswer){
+    resultCalculator(userAnswer, computerAnswer, ul0, ul1){
         if(userAnswer !='false' && computerAnswer !='false'){
             if (userAnswer == computerAnswer){
                 let userLi = document.createElement('li');
                 userLi.innerHTML = `${userAnswer} - 5 poena`;
-                document.getElementById('userResultUl').appendChild(userLi);
+                document.getElementById(ul0).appendChild(userLi);
                 this.userPoints.push(5);
 
                 let compLi = document.createElement('li');
                 compLi.innerHTML = `${computerAnswer} - 5 poena`;
-                document.getElementById('computerResultUl').appendChild(compLi);
+                document.getElementById(ul1).appendChild(compLi);
                 this.computerPoints.push(5);
             } else {
             let userLi = document.createElement('li');
             userLi.innerHTML = `${userAnswer} - 10 poena`;
-            document.getElementById('userResultUl').appendChild(userLi);
+            document.getElementById(ul0).appendChild(userLi);
             this.userPoints.push(10);
 
             let compLi = document.createElement('li');
             compLi.innerHTML = `${computerAnswer} - 10 poena`;
-            document.getElementById('computerResultUl').appendChild(compLi);
+            document.getElementById(ul1).appendChild(compLi);
             this.computerPoints.push(10);
             };
         } else if(userAnswer != 'false' && computerAnswer == 'false'){
             let userLi = document.createElement('li');
             userLi.innerHTML = `${userAnswer} - 15 poena`;
-            document.getElementById('userResultUl').appendChild(userLi);
+            document.getElementById(ul0).appendChild(userLi);
             this.userPoints.push(15);
 
             let compLi = document.createElement('li');
             compLi.innerHTML = `${computerAnswer} - 0 poena`;
-            document.getElementById('computerResultUl').appendChild(compLi);
+            document.getElementById(ul1).appendChild(compLi);
         }else if(userAnswer == 'false' && computerAnswer != 'false'){
             let compLi = document.createElement('li');
             compLi.innerHTML = `${computerAnswer} - 15 poena`;
-            document.getElementById('computerResultUl').appendChild(compLi);
+            document.getElementById(ul1).appendChild(compLi);
             this.computerPoints.push(15);
 
             let userLi = document.createElement('li');
             userLi.innerHTML = `${userAnswer} - 0 poena`;
-            document.getElementById('userResultUl').appendChild(userLi);
+            document.getElementById(ul0).appendChild(userLi);
         }else {
             let userLi = document.createElement('li');
             userLi.innerHTML = `${userAnswer} - 0 poena`;
-            document.getElementById('userResultUl').appendChild(userLi);
+            document.getElementById(ul0).appendChild(userLi);
 
             let compLi = document.createElement('li');
             compLi.innerHTML = `${computerAnswer} - 0 poena`;
-            document.getElementById('computerResultUl').appendChild(compLi);
+            document.getElementById(ul1).appendChild(compLi);
         };
     }
 
-    score(){
+    score(ul0, ul1){
         let userScore = this.userPoints.reduce((a, b) => a + b, 0);
         let userLi = document.createElement('li');
         userLi.innerHTML = `<b style="color: green;">Ukupno poena: ${userScore}<b/>`;
-        document.getElementById('userResultUl').appendChild(userLi);
+        document.getElementById(ul0).appendChild(userLi);
 
         let computerScore = this.computerPoints.reduce((a, b) => a + b, 0);
         let compLi = document.createElement('li');
         compLi.innerHTML = `<b style="color: green;">Ukupno poena: ${computerScore}<b/>`;
-        document.getElementById('computerResultUl').appendChild(compLi);
+        document.getElementById(ul1).appendChild(compLi);
 
         if(userScore > computerScore){
             let userLi = document.createElement('li');
             userLi.innerHTML = `<img src="./images/win.png" alt="winImg" id="winImg">`;
-            document.getElementById('userResultUl').appendChild(userLi);
+            document.getElementById(ul0).appendChild(userLi);
         }else if(userScore < computerScore){
             let compLi = document.createElement('li');
             compLi.innerHTML = `<img src="./images/win.png" alt="winImg" id="winImg">`;
-            document.getElementById('computerResultUl').appendChild(compLi);
+            document.getElementById(ul1).appendChild(compLi);
         }else document.getElementById('noWin').innerHTML = `Rezultat je nerešen!`;
     }
 
