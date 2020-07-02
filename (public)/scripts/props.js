@@ -27,4 +27,5 @@ proposition.addEventListener('submit', e => {
     } else alert("Neuspesno dodavanje predloga");
 });
 
-user.getProps(user.render);
+// user.getProps(user.render);
+user.bestScore(user.proba);

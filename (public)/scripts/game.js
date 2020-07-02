@@ -3,11 +3,13 @@ export class Game{
     constructor(user){
         this.username = user;
         this.terms = db.collection('pojmovi');
+        this.results = db.collection('rezultati');
         this.userArr = [];
         this.computerArr = [];
         this.userAnswerArr =[];
         this.userPoints = [];
         this.computerPoints = [];
+        this.topFive = [];
     }
 
     set username(user){
@@ -22,10 +24,6 @@ export class Game{
         this.username = upUsername;
         localStorage.setItem("username", upUsername);
     }
-
-    // firstLetter(string){
-    //     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-    // }
 
     firstLetter(string) {
         let str;
@@ -94,6 +92,44 @@ export class Game{
             callback(this.userArr);
         });
     }
+
+    bestScore(callback) {
+        this.results
+            .orderBy('broj_poena', 'desc')
+            .limit(5)
+            .get()
+            .then(snapshot => {
+                snapshot.docs.forEach(doc => {
+                    this.topFive.push(doc.data());
+                });
+                callback(this.topFive);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    proba(x){
+        console.log(x[0].username);
+        let players = [];
+        let points = [];
+        x.forEach((element) => {
+            players.push(element.username);
+            points.push(element.broj_poena);
+        });
+        let top = document.querySelector(".top");
+        top.innerHTML = `
+        <h2 id="fameh2">Hall of Fame</h2><hr>
+        <ul style="list-style-type:none;" id="topListLi">
+        <img src="../images/goldmedal.png" id="medals"> <li> ${players[0]} - ${points[0]} poena</li><br>
+        <img src="../images/silvermedal.png" id="medals"> <li> ${players[1]} - ${points[1]} poena</li><br>
+        <img src="../images/bronzemedal.png" id="medals"> <li> ${players[2]} - ${points[2]} poena</li><br>
+        </ul>
+        `;
+    }
+
+    // <li>${players[3]} - ${points[3]} poena</li><br>
+    // <li>${players[4]} - ${points[4]} poena</li><br>
 
     render(y){
         let counts = {};
@@ -180,8 +216,6 @@ export class Game{
                 localStorage.setItem(`computerDržava`, false);
             } else localStorage.setItem(`computerDržava`, string);
         } else localStorage.setItem(`computerDržava`, false);
-        // console.log(string, probability);
-
     }
 
     computerAnswerCity(string, probability){
@@ -190,7 +224,6 @@ export class Game{
                 localStorage.setItem(`computerGrad`, false);
             } else localStorage.setItem(`computerGrad`, string);
         } else localStorage.setItem(`computerGrad`, false);
-        // console.log(string, probability);
     }
 
     computerAnswerRiver(string, probability){
@@ -199,7 +232,6 @@ export class Game{
                 localStorage.setItem(`computerReka`, false);
             } else localStorage.setItem(`computerReka`, string);
         } else localStorage.setItem(`computerReka`, false);
-        // console.log(string, probability);
     }
 
     computerAnswerMountain(string, probability){
@@ -208,7 +240,6 @@ export class Game{
                 localStorage.setItem(`computerPlanina`, false);
             } else localStorage.setItem(`computerPlanina`, string);
         } else localStorage.setItem(`computerPlanina`, false);
-        // console.log(string, probability);
     }
 
     computerAnswerAnimal(string, probability){
@@ -217,7 +248,6 @@ export class Game{
                 localStorage.setItem(`computerŽivotinja`, false);
             } else localStorage.setItem(`computerŽivotinja`, string);
         } else localStorage.setItem(`computerŽivotinja`, false);
-        // console.log(string, probability);
     }
 
     computerAnswerPlant(string, probability){
@@ -226,7 +256,6 @@ export class Game{
                 localStorage.setItem(`computerBiljka`, false);
             } else localStorage.setItem(`computerBiljka`, string);
         } else localStorage.setItem(`computerBiljka`, false);
-        // console.log(string, probability);
     }
 
     computerAnswerItem(string, probability){
@@ -235,7 +264,15 @@ export class Game{
                 localStorage.setItem(`computerPredmet`, false);
             } else localStorage.setItem(`computerPredmet`, string);
         } else localStorage.setItem(`computerPredmet`, false);
-        // console.log(string, probability);
+    }
+
+    multiplayerUsernameWrite(value, element){
+        let li = document.createElement('li');
+        li.setAttribute('id', `${element}Name`);
+        li.setAttribute('data-value', `${value}`);
+        li.innerHTML = value;
+        li.style.color = "rgb(248, 182, 0)";
+        document.getElementById(element).appendChild(li);
     }
 
     resultCalculator(userAnswer, computerAnswer, ul0, ul1){
@@ -268,7 +305,7 @@ export class Game{
             this.userPoints.push(15);
 
             let compLi = document.createElement('li');
-            compLi.innerHTML = `${computerAnswer} - 0 poena`;
+            compLi.innerHTML = `Netačan pojam - 0 poena`;
             document.getElementById(ul1).appendChild(compLi);
         }else if(userAnswer == 'false' && computerAnswer != 'false'){
             let compLi = document.createElement('li');
@@ -277,15 +314,15 @@ export class Game{
             this.computerPoints.push(15);
 
             let userLi = document.createElement('li');
-            userLi.innerHTML = `${userAnswer} - 0 poena`;
+            userLi.innerHTML = `Netačan pojam - 0 poena`;
             document.getElementById(ul0).appendChild(userLi);
         }else {
             let userLi = document.createElement('li');
-            userLi.innerHTML = `${userAnswer} - 0 poena`;
+            userLi.innerHTML = `Netačan pojam - 0 poena`;
             document.getElementById(ul0).appendChild(userLi);
 
             let compLi = document.createElement('li');
-            compLi.innerHTML = `${computerAnswer} - 0 poena`;
+            compLi.innerHTML = `Netačan pojam - 0 poena`;
             document.getElementById(ul1).appendChild(compLi);
         };
     }
@@ -293,23 +330,59 @@ export class Game{
     score(ul0, ul1){
         let userScore = this.userPoints.reduce((a, b) => a + b, 0);
         let userLi = document.createElement('li');
-        userLi.innerHTML = `<b style="color: green;">Ukupno poena: ${userScore}<b/>`;
+        userLi.innerHTML = `<b style="color: green;">Ukupno poena<li id="user0Res" value="${userScore}">${userScore}</li><b/>`;
         document.getElementById(ul0).appendChild(userLi);
 
         let computerScore = this.computerPoints.reduce((a, b) => a + b, 0);
         let compLi = document.createElement('li');
-        compLi.innerHTML = `<b style="color: green;">Ukupno poena: ${computerScore}<b/>`;
+        compLi.innerHTML = `<b style="color: green;">Ukupno poena<li id="user1Res" value="${computerScore}">${computerScore}</li><b/>`;
         document.getElementById(ul1).appendChild(compLi);
 
         if(userScore > computerScore){
             let userLi = document.createElement('li');
             userLi.innerHTML = `<img src="./images/win.png" alt="winImg" id="winImg">`;
             document.getElementById(ul0).appendChild(userLi);
+            document.getElementById('noWin').innerHTML = `<hr>`
         }else if(userScore < computerScore){
             let compLi = document.createElement('li');
             compLi.innerHTML = `<img src="./images/win.png" alt="winImg" id="winImg">`;
             document.getElementById(ul1).appendChild(compLi);
+            document.getElementById('noWin').innerHTML = `<hr>`
         }else document.getElementById('noWin').innerHTML = `Rezultat je nerešen!`;
+    }
+
+    userScoreExists(callback) {
+        this.results
+            .where("username", "==", localStorage.username)
+            .get()
+            .then( snapshot => {
+                let doc;
+                if(snapshot.docs.length) {
+                    doc = snapshot.docs[0];
+                } else {
+                    doc = false;
+                }
+                callback(doc);
+            });
+    }
+
+    addScore(score) {
+        this.userScoreExists( doc => {
+            let data = doc ? doc.data() : false;
+            let docId = doc ? doc.id : null;
+            let time = new Date();
+            let newDoc = {
+                username: localStorage.username,
+                broj_igara: data ? data.broj_igara + 1 : 1,
+                broj_poena: data ? data.broj_poena + score : score,
+                datum: firebase.firestore.Timestamp.fromDate(time)
+            };
+            if(doc) {
+                return this.results.doc(docId).update(newDoc);
+            } else {
+                return this.results.doc().set(newDoc);
+            }
+        });
     }
 
 }

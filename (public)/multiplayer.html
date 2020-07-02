@@ -8,14 +8,23 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Test</h1>
-    <ul id="ullist"></ul>
+    <h2 id="multiplayh2">Igra dva igrača</h2>
 
-     <form action="/multiplayer" method="POST" id="multiGameForm" style="display: none;">
-        <label for="inputCountr">Država:</label>
+    <div class="col-12">
+        <a href="./index.html" class="homeBtn">Početna</a>
+    </div>
+
+    <div class="col-12">
+        <ul id="ullist"></ul>
+    </div>
+
+    <div id="countdown"></div>
+
+     <form action="/multiplayer" class="col-12" id="multiGameForm" style="display: none;">
+        <label for="inputCountr">Država</label>
         <input type="text" name="drzava" id="drzava" autocomplete="off">
 
-        <label for="inputCity">Grad:</label>
+        <label for="inputCity">Grad</label>
         <input type="text" name="grad" id="grad" autocomplete="off">
 
         <label for="inputRiver">Reka</label>
@@ -33,14 +42,19 @@
         <label for="">Predmet</label>
         <input type="text" name="predmet" id="predmet" autocomplete="off">
 
-        <input type="submit" name="done">
+        <input type="submit" value="Potvrdi" name="done">
     </form>
 
     <div id="result">
+        <h2>Rezultat</h2>
         <div id="player0Result"></div>
         <div id="player1Result"></div>
         <div id="noWin"></div>
+        <div id="newGame">
+            <button id="newGameBtn">Nova Igra</button>
+        </div>
     </div>
+
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="./scripts/client.js" type="module"></script>

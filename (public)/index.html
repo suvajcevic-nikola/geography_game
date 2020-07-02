@@ -18,19 +18,24 @@
         </div>
         <div class="col-3 item1" id="current">
             <form id="usernameForm">
-                <label for="username">Unesi nadimak:</label><br>
-                <input type="text" name="usernameInput" id="usernameInput"><br>
+                <!-- <label for="username" id="usernameLabel">Unesi nadimak:</label><br> -->
+                <input type="text" name="usernameInput" id="usernameInput" placeholder="Unesi nadimak"><br>
                 <input type="submit" value="Potvrdi" id="btnSend" class="btn">
             </form>
         </div>
     </div>
 
     <div class="col-12 item2">
-        <div class="col-3" id="playDiv">
-            <h2 id="playBtn">Počni igru</h2>
-            <a href="./multiplayer.html">Test</a>
+        <div class="col-12" id="playDiv">
+            <h2 id="playBtn">Igra protiv kompjutera</h2><br>
+            <h2 id="multiplayBtn" style="color:rgb(0, 163, 228);">Igra dva igraca</h2>
         </div>
         <h1>Zanimljiva geografija</h1>
+    </div>
+
+    <div id="footer">
+        <div class="col-6" id="ns"><a target="_blank" href="https://linkedin.com/in/nikola-suvajcevic-1b7690165">Nikola Suvajčević</a></div>
+        <div class="col-6" id="itbtc"><a target="_blank" href="https://itbootcamp.rs">Itbootcamp - Niš 2020</a></div>
     </div>
 
     <div class="col-12 item4">
@@ -52,7 +57,7 @@
             <input type="text" name="term" id="term"><br>
             <input type="submit" value="Potvrdi" id="btnSend" class="btn">
             <!-- <h3 style="color: red;">Trenutno je onemogućeno -->
-            <br> dodavanje predloga!</h3>
+            <!-- <br> dodavanje predloga!</h3> -->
         </form>
     </div>
 
@@ -63,12 +68,13 @@
         <h1>Igra</h1>
         <h2 id="introMsg">Imate 90 skundi!</h2>
     </div>
-    <div class="col-12 result" id="result">
+    <div class="col-12 result" >
         <h2>Rezultat</h2>
         <div class="col-4" id="userResultUl">
             <h3 id="userH3"></h3><hr>
         </div>
         <div class="col-4" id="vsDiv">
+            <div id="vsText">
             <h3>VS</h3><hr>
             <li>Država</li>
             <li>Grad</li>
@@ -77,7 +83,9 @@
             <li>Životinja</li>
             <li>Biljka</li>
             <li>Predmet</li>
+            </div>
             <b id="noWin"></b>
+            <!-- <button id="btnNewGame">Nova igra</button> -->
         </div>
         <div class="col-4" id="computerResultUl">
             <h3 id="compH3">Kompjuter</h3><hr>
@@ -114,13 +122,13 @@
                 <label for="">Predmet</label>
                 <input type="text" name="Predmet" id="item" autocomplete="off">
             </form>
+            <button id="confirm">Potvrdi</button>
         </div>
     </div>
 
     <script src="scripts/app.js" type="module"></script>
     <script src="scripts/game.js" type="module"></script>
     <script src="scripts/props.js" type="module"></script>
-    <script src="scripts/client.js" type="module"></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>

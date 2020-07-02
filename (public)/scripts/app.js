@@ -7,6 +7,9 @@ let hallFame = document.querySelector(".item5");
 let fameBtn = document.querySelector(".fameBtn");
 let title = document.querySelector(".item2");
 let playBtn = document.querySelector("#playBtn");
+let multiplayBtn = document.querySelector("#multiplayBtn");
+let playDiv = document.querySelector("#playDiv");
+// let btnNewGame = document.querySelector("#btnNewGame");
 let intro = document.querySelector(".intro");
 let play = document.querySelector(".item6");
 let result = document.querySelector(".result");
@@ -17,6 +20,8 @@ let mountain = document.querySelector("#mountain");
 let animal = document.querySelector("#animal");
 let plant = document.querySelector("#plant");
 let item = document.querySelector("#item");
+
+let gameEnd = false;
 
 let checkUsername = () => {
     if(localStorage.username){
@@ -31,12 +36,15 @@ export {user};
 
 let check = () => {
     if(checkUsername() != "anonymous"){
+
+        playDiv.style.display = "block";
+
         usernameForm.innerHTML = `<label for="username"></label>`;
         menu.style.display = "block";
 
         let down = document.createElement("div");
         down.setAttribute("id", "down");
-        down.innerHTML = `<b id="userColor">Korisnik: </b><b id="usernameColor">${localStorage.username}</b><i class="material-icons arrow" id="click">details</i>`;
+        down.innerHTML = `<b id="userColor">Korisnik: </b><b id="usernameColor">${localStorage.username}</b><i class="material-icons arrow" id="click">expand_more</i>`;
         document.getElementById('current').appendChild(down);
 
         let userOptions = document.createElement("div");
@@ -47,17 +55,26 @@ let check = () => {
         ul.setAttribute("id", "ul");
         let li1 = document.createElement('li');
         li1.setAttribute("id", "li1");
-        li1.innerHTML = `Promeni nadimak`;
+        li1.innerHTML = `Odjavi se`;
         ul.appendChild(li1);
         document.getElementById('userOptions').appendChild(ul);
+
+        let logout = document.getElementById('li1');
+
+        logout.onclick = () => {
+            localStorage.clear();
+            location.reload();
+        }
 
         down.onclick = () => {
             if(userOptions.style.display == "none"){
                 userOptions.style.display = "block";
                 down.style.color = "rgb(165, 165, 165)";
+                down.innerHTML = `<b id="userColor">Korisnik: </b><b id="usernameColor">${localStorage.username}</b><i class="material-icons arrow" id="click">expand_less</i>`;
             } else {
                 userOptions.style.display = "none";
                 down.style.color = "white";
+                down.innerHTML = `<b id="userColor">Korisnik: </b><b id="usernameColor">${localStorage.username}</b><i class="material-icons arrow" id="click">expand_more</i>`;
             }
         };
     };
@@ -70,7 +87,7 @@ usernameForm.addEventListener ('submit', e => {
         user.updateUsername(usernameInput.value);
         usernameForm.reset();
         check();
-    } else alert("Unesite korisnicko ime");
+    } else alert("Unesite korisničko ime");
 });
 
 fameBtn.onclick = () => {
@@ -82,6 +99,7 @@ playBtn.onclick = () => {
     if(checkUsername() != "anonymous"){
         intro.classList.add('show');
         title.classList.add("hidden");
+        title.classList.add("fix");
 
         let playGame = () => {
             play.classList.add('show');
@@ -94,7 +112,7 @@ playBtn.onclick = () => {
         localStorage.setItem('firstLetter', user.getRandomLetter(1));
 
         let lett = document.createElement("h1");
-        lett.setAttribute("id", "playH1")
+        lett.setAttribute("id", "playH1");
         lett.innerHTML = `Slovo: ${localStorage.firstLetter}`;
         document.getElementById('lettAndTime').appendChild(lett);
 
@@ -102,7 +120,7 @@ playBtn.onclick = () => {
         let downloadTimer = setInterval(function(){
         if(timeleft <= 0){
             clearInterval(downloadTimer);
-            document.getElementById("countdown").innerHTML = "Vreme je isteklo!";
+            document.getElementById("countdown").innerHTML = `<b id="time">Vreme je isteklo!</b>`;
         } else {
             document.getElementById("countdown").innerHTML = timeleft;
         }
@@ -116,7 +134,16 @@ playBtn.onclick = () => {
 
         document.getElementById("firstPlayer").innerHTML = `${localStorage.username}`;
 
-    } else alert("Unesite korisnicko ime");
+    } else alert("Unesite korisničko ime");
+};
+
+multiplayBtn.onclick = () =>{
+    window.location.href = "./multiplayer.html";
+};
+
+document.querySelector('#confirm').onclick = () => {
+    timer();
+    gameEnd = true;
 };
 
 // let checkUserAnswers = (value, category, firstLetter, player) => {
@@ -133,6 +160,8 @@ playBtn.onclick = () => {
 // export {checkUserAnswers};
 
 let timer = () => {
+
+    if(gameEnd == false){
     console.log(localStorage.firstLetter);
 
     user.checkUserAnswers(country.value, country.name, localStorage.firstLetter, 'user');
@@ -151,8 +180,8 @@ let timer = () => {
     user.randomPick(localStorage.firstLetter, "Biljka", user.computerAnswerPlant);
     user.randomPick(localStorage.firstLetter, "Predmet", user.computerAnswerItem);
 
-    setTimeout(showResult, 2500);
-
+    setTimeout(showResult, 1000);
+    };
 };
 
 

@@ -4,7 +4,7 @@ class Multiplayer {
     this._players = [p1, p2];
     this._inputs = [null, null];
 
-    this._sendToPlayers('Game starts!');
+    this._sendToPlayers('<b id="gameStarts">Igra je počela!</b>');
     this._displayForm();
     this._getRandomLetter();
 
@@ -34,7 +34,7 @@ class Multiplayer {
 
     _onInput(playerIndex, input){
       this._inputs[playerIndex] = input;
-      this._sendToPlayer(playerIndex, `You submited ${input}`);
+      // this._sendToPlayer(playerIndex, `Vaši odgovori ${input}`);
 
       this._gameOver();
     }
@@ -50,8 +50,8 @@ class Multiplayer {
       const inputs = this._inputs;
 
       if(inputs[0] && inputs[1]){
-         this._sendToPlayers('Game over' + ' ' + inputs.join(' : '));
-         console.log(this._inputs);
+        //  this._sendToPlayers('Game over' + ' ' + inputs.join(' : '));
+        //  console.log(this._inputs);
          this._checkInputs(this._inputs);
          this._inputs = [null, null];
       };
@@ -59,7 +59,8 @@ class Multiplayer {
 
     _getRandomLetter(){
       let result           = '';
-      let characters       = 'ABCDEFGHIJKLMNOPRSTUVZŠĐŽČĆ';
+      // let characters       = 'ABCDEFGHIJKLMNOPRSTUVZŠĐŽČĆ';
+      let characters       = 'B';
       let charactersLength = characters.length;
       for ( let i = 0; i < 1; i++ ) {
          result += characters.charAt(Math.floor(Math.random() * charactersLength));

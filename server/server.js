@@ -22,15 +22,19 @@ io.on('connection', (sock) => {
         waitingPlayer = null;
       } else {
         waitingPlayer = sock;
-        waitingPlayer.emit('message', 'Waiting for an opponent');
+        waitingPlayer.emit('message', '<b id="wait">Čekamo protivnika...</b>');
         // console.log('Waiting for player');
       }
+
+      sock.on('disconnect', function(){
+        io.emit('message', '<b id="playerDisconnect">Protivnik je napustio igru!</b>');
+        io.emit('disc', 'disc');
+      });
 
       sock.on('message', (text) => {
         io.emit('message', text);
       });
 });
-
 
 
 //server listen
