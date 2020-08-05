@@ -98,7 +98,7 @@ const onFormSubmitted = (e) => {
 }
 
 newGameBtn.onclick = () => {
-    location.reload();
+    window.location = "../index.html";
 }
 
 const disc = (value) =>{
@@ -113,10 +113,10 @@ const disc = (value) =>{
     document.getElementById("multiFirstLett").style.display = 'none';
     window.scrollTo(0, 0);
 
-    document.getElementById("playerDisconnect").innerHTML+= '<br><b id="discNewGame">Pokreni novu igru</b>';
+    document.getElementById("playerDisconnect").innerHTML+= '<br><b id="discNewGame">Nova igra</b>';
 
     document.getElementById("discNewGame").onclick = () => {
-        location.reload();
+        window.location = "../index.html";
     };
 }
 
