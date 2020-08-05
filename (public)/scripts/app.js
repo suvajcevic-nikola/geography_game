@@ -138,13 +138,17 @@ playBtn.onclick = () => {
 };
 
 multiplayBtn.onclick = () =>{
-    window.location.href = "./multiplayer.html";
+    window.location.href = "../multiplayer.html";
 };
 
 document.querySelector('#confirm').onclick = () => {
     timer();
     gameEnd = true;
 };
+
+document.getElementById('newGameWithComp').onclick = () => {
+    window.location.href = "../index.html";
+}
 
 // let checkUserAnswers = (value, category, firstLetter, player) => {
 //     if(firstLetter == (user.firstLetter(value)).toUpperCase()) {
