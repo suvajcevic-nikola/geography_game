@@ -127,4 +127,6 @@ sock.on('submitedInputs', log);
 sock.on('letter', firstLetter);
 sock.on('disc', disc);
 
+sock.emit('username', localStorage.username);
+
 document.querySelector('#multiGameForm').addEventListener('submit', onFormSubmitted);

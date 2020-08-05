@@ -15,25 +15,37 @@ const PORT = process.env.PORT || 8080;
 app.use(express.static(path.join(__dirname, '../(public)')));
 
 let waitingPlayer = null;
+let username1;
 
 io.on('connection', (sock) => {
-    if (waitingPlayer) {
-        new multiplayer(waitingPlayer, sock);
-        waitingPlayer = null;
-      } else {
+    if(waitingPlayer) {
+        sock.on('username', username2 => {
+            if(username1 == username2 || username1 == undefined) {
+                username1 = username2;
+                waitingPlayer = sock;
+                waitingPlayer.emit('message', '<b id="wait">Čekamo protivnika...</b>');
+            } else {
+                new multiplayer(waitingPlayer, sock);
+                waitingPlayer = null;
+                username1 = undefined;
+            }
+        })
+    } else {
         waitingPlayer = sock;
-        waitingPlayer.emit('message', '<b id="wait">Čekamo protivnika...</b>');
-        // console.log('Waiting for player');
-      }
+        waitingPlayer.on('username', username => {
+            username1 = username;
+        });
+        waitingPlayer.emit('message', '<b id="wait">Čekamo protivnika...</b>')
+    }
 
-      sock.on('disconnect', function(){
-        io.emit('message', '<b id="playerDisconnect">Protivnik je napustio igru!</b>');
-        io.emit('disc', 'disc');
-      });
+    sock.on('disconnect', function(){
+      io.emit('message', '<b id="playerDisconnect">Protivnik je napustio igru!</b>');
+      io.emit('disc', 'disc');
+    });
 
-      sock.on('message', (text) => {
-        io.emit('message', text);
-      });
+    sock.on('message', (text) => {
+      io.emit('message', text);
+    });
 });
 
 
