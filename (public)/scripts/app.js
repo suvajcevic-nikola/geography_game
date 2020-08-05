@@ -104,7 +104,7 @@ playBtn.onclick = () => {
         let playGame = () => {
             play.classList.add('show');
             intro.classList.add("hidden");
-            setTimeout(timer, 61000);
+            setTimeout(timer, 91000);
         };
 
         setTimeout(playGame, 2500);
@@ -116,7 +116,7 @@ playBtn.onclick = () => {
         lett.innerHTML = `Slovo: ${localStorage.firstLetter}`;
         document.getElementById('lettAndTime').appendChild(lett);
 
-        let timeleft = 61;
+        let timeleft = 91;
         let downloadTimer = setInterval(function(){
         if(timeleft <= 0){
             clearInterval(downloadTimer);

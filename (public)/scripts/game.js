@@ -342,12 +342,12 @@ export class Game{
             let userLi = document.createElement('li');
             userLi.innerHTML = `<img src="./images/win.png" alt="winImg" id="winImg">`;
             document.getElementById(ul0).appendChild(userLi);
-            document.getElementById('noWin').innerHTML = `<hr>`
+            // document.getElementById('noWin').innerHTML = `<hr>`
         }else if(userScore < computerScore){
             let compLi = document.createElement('li');
             compLi.innerHTML = `<img src="./images/win.png" alt="winImg" id="winImg">`;
             document.getElementById(ul1).appendChild(compLi);
-            document.getElementById('noWin').innerHTML = `<hr>`
+            // document.getElementById('noWin').innerHTML = `<hr>`
         }else document.getElementById('noWin').innerHTML = `Rezultat je nerešen!`;
     }
 

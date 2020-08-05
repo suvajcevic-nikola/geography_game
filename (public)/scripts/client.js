@@ -62,7 +62,7 @@ const firstLetter = (value) =>{
 const form = () => {
     document.getElementById("multiGameForm").style.display = "block";
 
-    let timeleft = 60;
+    let timeleft = 90;
     let downloadTimer = setInterval(function(){
     if(timeleft <= 0){
         clearInterval(downloadTimer);
@@ -73,7 +73,7 @@ const form = () => {
     timeleft -= 1;
     }, 1000);
 
-    setTimeout(submitFrom, 61000);
+    setTimeout(submitFrom, 91000);
 };
 
 const submitFrom = () => {
