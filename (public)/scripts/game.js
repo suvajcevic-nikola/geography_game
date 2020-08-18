@@ -9,7 +9,6 @@ export class Game{
         this.userAnswerArr =[];
         this.userPoints = [];
         this.computerPoints = [];
-        this.topFive = [];
     }
 
     set username(user){
@@ -93,71 +92,6 @@ export class Game{
         });
     }
 
-    bestScore(callback) {
-        this.results
-            .orderBy('broj_poena', 'desc')
-            .limit(5)
-            .get()
-            .then(snapshot => {
-                snapshot.docs.forEach(doc => {
-                    this.topFive.push(doc.data());
-                });
-                callback(this.topFive);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
-
-    proba(x){
-        console.log(x[0].username);
-        let players = [];
-        let points = [];
-        x.forEach((element) => {
-            players.push(element.username);
-            points.push(element.broj_poena);
-        });
-        let top = document.querySelector(".top");
-        top.innerHTML = `
-        <h2 id="fameh2">Hall of Fame</h2><hr>
-        <ul style="list-style-type:none;" id="topListLi">
-        <img src="../images/goldmedal.png" id="medals"> <li> ${players[0]} - ${points[0]} poena</li><br>
-        <img src="../images/silvermedal.png" id="medals"> <li> ${players[1]} - ${points[1]} poena</li><br>
-        <img src="../images/bronzemedal.png" id="medals"> <li> ${players[2]} - ${points[2]} poena</li><br>
-        </ul>
-        `;
-    }
-
-    // <li>${players[3]} - ${points[3]} poena</li><br>
-    // <li>${players[4]} - ${points[4]} poena</li><br>
-
-    render(y){
-        let counts = {};
-        y.forEach(x=>counts[x]=(counts[x] || 0)+1 );
-        // console.log(counts)
-
-        let sortable = [];
-        for (var elem in counts) {
-            sortable.push([elem, counts[elem]]);
-        }
-
-        let score = sortable.sort(function(a, b) {
-            return b[1] - a[1];
-        });
-
-        let top = document.querySelector(".top");
-        top.innerHTML = `
-        <h2 id="fameh2">Hall of Fame</h2><hr>
-        <ul style="list-style-type:none;">
-        <li>${score[0][0]} - ${score[0][1]}</li>
-        <li>${score[1][0]} - ${score[1][1]}</li>
-        <li>${score[2][0]} - ${score[2][1]}</li>
-        <li>${score[3][0]} - ${score[3][1]}</li>
-        <li>${score[4][0]} - ${score[4][1]}</li>
-        </ul>
-        `;
-    }
-
     getRandomLetter(length) {
         let result           = '';
         let characters       = 'ABCDEFGHIJKLMNOPRSTUVZŠĐŽČĆ';
@@ -204,10 +138,6 @@ export class Game{
             }
         });
         } else localStorage.setItem(`${player}${category}`, false);
-    }
-
-    console(value){
-        console.log(value);
     }
 
     computerAnswerCountry(string, probability){
@@ -342,12 +272,10 @@ export class Game{
             let userLi = document.createElement('li');
             userLi.innerHTML = `<img src="./images/win.png" alt="winImg" id="winImg">`;
             document.getElementById(ul0).appendChild(userLi);
-            // document.getElementById('noWin').innerHTML = `<hr>`
         }else if(userScore < computerScore){
             let compLi = document.createElement('li');
             compLi.innerHTML = `<img src="./images/win.png" alt="winImg" id="winImg">`;
             document.getElementById(ul1).appendChild(compLi);
-            // document.getElementById('noWin').innerHTML = `<hr>`
         }else document.getElementById('noWin').innerHTML = `Rezultat je nerešen!`;
     }
 

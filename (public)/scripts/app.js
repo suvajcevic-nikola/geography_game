@@ -3,13 +3,10 @@ import { Game } from "./game.js";
 let usernameForm = document.querySelector("#usernameForm");
 let usernameInput = document.querySelector("#usernameInput");
 let menu = document.querySelector(".menu");
-let hallFame = document.querySelector(".item5");
-let fameBtn = document.querySelector(".fameBtn");
 let title = document.querySelector(".item2");
 let playBtn = document.querySelector("#playBtn");
 let multiplayBtn = document.querySelector("#multiplayBtn");
 let playDiv = document.querySelector("#playDiv");
-// let btnNewGame = document.querySelector("#btnNewGame");
 let intro = document.querySelector(".intro");
 let play = document.querySelector(".item6");
 let result = document.querySelector(".result");
@@ -90,11 +87,6 @@ usernameForm.addEventListener ('submit', e => {
     } else alert("Unesite korisničko ime");
 });
 
-fameBtn.onclick = () => {
-    hallFame.classList.add('show');
-    title.classList.add("hidden");
-};
-
 playBtn.onclick = () => {
     if(checkUsername() != "anonymous"){
         intro.classList.add('show');
@@ -149,19 +141,6 @@ document.querySelector('#confirm').onclick = () => {
 document.getElementById('newGameWithComp').onclick = () => {
     window.location.href = "../index.html";
 }
-
-// let checkUserAnswers = (value, category, firstLetter, player) => {
-//     if(firstLetter == (user.firstLetter(value)).toUpperCase()) {
-//         user.checkTerm(value, category, data => {
-//         if(data) {
-//             localStorage.setItem(`${player}${category}`, false);
-//         } else {
-//             localStorage.setItem(`${player}${category}`, user.stringCheck(value));
-//         }
-//     });
-//     } else localStorage.setItem(`${player}${category}`, false);
-// }
-// export {checkUserAnswers};
 
 let timer = () => {
 
