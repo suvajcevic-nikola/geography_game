@@ -556,4 +556,7 @@ li {
     /* #usernameLabel {
         margin-right: 100px;
     } */
+    #footer {
+        font-size: 1em;
+    }
 }

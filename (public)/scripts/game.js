@@ -279,38 +279,38 @@ export class Game{
         }else document.getElementById('noWin').innerHTML = `Rezultat je nerešen!`;
     }
 
-    userScoreExists(callback) {
-        this.results
-            .where("username", "==", localStorage.username)
-            .get()
-            .then( snapshot => {
-                let doc;
-                if(snapshot.docs.length) {
-                    doc = snapshot.docs[0];
-                } else {
-                    doc = false;
-                }
-                callback(doc);
-            });
-    }
+    // userScoreExists(callback) {
+    //     this.results
+    //         .where("username", "==", localStorage.username)
+    //         .get()
+    //         .then( snapshot => {
+    //             let doc;
+    //             if(snapshot.docs.length) {
+    //                 doc = snapshot.docs[0];
+    //             } else {
+    //                 doc = false;
+    //             }
+    //             callback(doc);
+    //         });
+    // }
 
-    addScore(score) {
-        this.userScoreExists( doc => {
-            let data = doc ? doc.data() : false;
-            let docId = doc ? doc.id : null;
-            let time = new Date();
-            let newDoc = {
-                username: localStorage.username,
-                broj_igara: data ? data.broj_igara + 1 : 1,
-                broj_poena: data ? data.broj_poena + score : score,
-                datum: firebase.firestore.Timestamp.fromDate(time)
-            };
-            if(doc) {
-                return this.results.doc(docId).update(newDoc);
-            } else {
-                return this.results.doc().set(newDoc);
-            }
-        });
-    }
+    // addScore(score) {
+    //     this.userScoreExists( doc => {
+    //         let data = doc ? doc.data() : false;
+    //         let docId = doc ? doc.id : null;
+    //         let time = new Date();
+    //         let newDoc = {
+    //             username: localStorage.username,
+    //             broj_igara: data ? data.broj_igara + 1 : 1,
+    //             broj_poena: data ? data.broj_poena + score : score,
+    //             datum: firebase.firestore.Timestamp.fromDate(time)
+    //         };
+    //         if(doc) {
+    //             return this.results.doc(docId).update(newDoc);
+    //         } else {
+    //             return this.results.doc().set(newDoc);
+    //         }
+    //     });
+    // }
 
 }
