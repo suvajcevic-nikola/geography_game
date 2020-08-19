@@ -9,7 +9,6 @@ const writeEvent = (text) => {
 
     let el = document.createElement('li');
     el.innerHTML = text;
-
     document.getElementById("ullist").appendChild(el);
 };
 

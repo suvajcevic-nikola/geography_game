@@ -57,7 +57,7 @@ class Multiplayer {
     _getRandomLetter(){
       let result           = '';
       let characters       = 'ABCDEFGHIJKLMNOPRSTUVZŠĐŽČĆ';
-      // let characters       = 'B';
+      // let characters    = 'B';
       let charactersLength = characters.length;
       for ( let i = 0; i < 1; i++ ) {
          result += characters.charAt(Math.floor(Math.random() * charactersLength));
