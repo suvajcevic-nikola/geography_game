@@ -22,7 +22,6 @@ class Multiplayer {
     _sendToPlayers(msg) {
         this._players.forEach((player) => {
           player.emit('message', msg);
-          // console.log('Game starts');
         });
     }
 
@@ -34,15 +33,12 @@ class Multiplayer {
 
     _onInput(playerIndex, input){
       this._inputs[playerIndex] = input;
-      // this._sendToPlayer(playerIndex, `Vaši odgovori ${input}`);
-
       this._gameOver();
     }
 
     _checkInputs(inputs) {
       this._players.forEach((player) => {
         player.emit('submitedInputs', inputs);
-        // console.log('Game starts');
       });
   }
 
@@ -50,10 +46,11 @@ class Multiplayer {
       const inputs = this._inputs;
 
       if(inputs[0] && inputs[1]){
-        //  this._sendToPlayers('Game over' + ' ' + inputs.join(' : '));
-        //  console.log(this._inputs);
          this._checkInputs(this._inputs);
          this._inputs = [null, null];
+         this._players.forEach((player) => {
+          player.disconnect();
+        });
       };
     }
 

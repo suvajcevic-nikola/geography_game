@@ -96,7 +96,7 @@ const onFormSubmitted = (e) => {
 }
 
 newGameBtn.onclick = () => {
-    window.location = "../index.html";
+    location.reload();
 }
 
 const disc = (value) =>{
@@ -113,7 +113,7 @@ const disc = (value) =>{
     document.getElementById("playerDisconnect").innerHTML+= '<br><b id="discNewGame">Nova igra</b>';
 
     document.getElementById("discNewGame").onclick = () => {
-        window.location = "../index.html";
+        location.reload();
     };
 }
 
