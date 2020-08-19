@@ -557,6 +557,6 @@ li {
         margin-right: 100px;
     } */
     #footer {
-        font-size: 1em;
+        display: none;
     }
 }
