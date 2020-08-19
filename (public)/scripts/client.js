@@ -19,7 +19,6 @@ const log = (value) => {
         user.multiplayerUsernameWrite(`${value[j][0]}`, `player${j}Result`);
 
         for (let i = 1; i < array.length; i++) {
-            console.log(array[i], category[i]);
             user.checkUserAnswers(array[i], category[i], localStorage.firstLetterMultiplayer, `player${j}`);
         }
     });
@@ -54,7 +53,6 @@ const showResult = () =>{
 }
 
 const firstLetter = (value) =>{
-    console.log(value);
     writeEvent(`<b id="multiFirstLett">Početno slovo: ${value}</b>`);
     localStorage.firstLetterMultiplayer = value;
 }
@@ -102,7 +100,6 @@ newGameBtn.onclick = () => {
 }
 
 const disc = (value) =>{
-    console.log(value);
     if(document.getElementById('wait') != null){
         document.getElementById('wait').style.display = 'none';
     };
