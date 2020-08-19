@@ -41,6 +41,7 @@ io.on('connection', (sock) => {
     sock.on('disconnect', function(){
       io.emit('message', '<b id="playerDisconnect">Protivnik je napustio igru!</b>');
       io.emit('disc', 'disc');
+      waitingPlayer = null;
     });
 
     sock.on('message', (text) => {
