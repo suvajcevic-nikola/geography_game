@@ -256,9 +256,6 @@ input[type=submit] {
     position: relative;
     cursor: pointer;
 }
-/* #down:hover {
-    color: rgb(165, 165, 165);
-} */
 ul {
     list-style-type:none;
     font-size: 25px;
@@ -527,11 +524,20 @@ li {
     #usernameInput {
         width: 100%;
     }
+    #multiFirstLett {
+        font-size: 1.5em;
+    }
     a {
         content: "";
         clear: both;
         display: table;
         font-size: 25px;
+    }
+    .homeBtn {
+        font-size: 35px;
+    }
+    .propBtn {
+        font-size: 35px;
     }
     #propImg {
         max-width: 100%;
@@ -558,6 +564,13 @@ li {
         width: 50%;
         float: left;
         font-size: 0.8em;
+    }
+    #newGameBtn {
+        font-size: 3em;
+    }
+    #noWin {
+        text-align: center;
+        font-size: 2em;
     }
     #footer {
         display: none;
