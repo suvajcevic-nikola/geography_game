@@ -507,8 +507,9 @@ li {
         position: relative;
         margin: 0;
     }
-    #btnSend{
-        margin-left: 120px;
+    .hidden {
+        display: none;
+        opacity: 0;
     }
     h1 {
         font-size: 2.5em;
@@ -517,6 +518,14 @@ li {
     h2 {
         font-size: 2em;
         float: none;
+    }
+    #multiplayh2 {
+        color: rgb(248, 182, 0);
+        font-size: 2.5em;
+        text-align: center;
+    }
+    #usernameInput {
+        width: 100%;
     }
     a {
         content: "";
@@ -530,9 +539,6 @@ li {
     }
     #fameh2 {
         font-size: 35px;
-    }
-    #usernameInput {
-        margin-right: 25px;
     }
     .fix{
         position: fixed;
@@ -553,9 +559,6 @@ li {
         float: left;
         font-size: 0.8em;
     }
-    /* #usernameLabel {
-        margin-right: 100px;
-    } */
     #footer {
         display: none;
     }
