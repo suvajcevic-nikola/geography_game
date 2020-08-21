@@ -42,15 +42,7 @@ const showResult = () =>{
     document.getElementById("result").style.display = "block";
     document.getElementById("multiGameForm").style.display = "none";
     document.getElementById("countdown").style.display = "none";
-
-    let player0Res = document.getElementById("user0Res").value;
-    let player0Name = document.getElementById("player0ResultName").getAttribute("data-value");;
-
-    let player1Res = document.getElementById("user1Res").value;
-
-    if(localStorage.username == player0Name){
-        user.addScore(player0Res);
-    } else user.addScore(player1Res);
+    document.getElementById("backList").style.display = "none";
 
     document.getElementById("multiFirstLett").style.display = "none";
 }
