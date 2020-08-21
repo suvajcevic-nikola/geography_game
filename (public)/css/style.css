@@ -195,7 +195,7 @@ input[type=text], select {
     background-color: rgb(21, 20, 131, 0.25);
     -webkit-text-stroke: 1px black;
     color: white;
-    font-size: 35px;
+    font-size: 50px;
     text-align: center;
 }
 #category {
