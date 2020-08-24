@@ -299,7 +299,8 @@ li {
 }
 #noWin {
     color: rgb(248, 182, 0);
-    font-size: 35px;
+    font-size: 2em;
+    text-align: center;
 }
 #winImg {
     width: 100px;
@@ -352,10 +353,6 @@ li {
     text-align: center;
     font-size: 90px;
     -webkit-text-stroke: 1px black;
-}
-#noWin{
-    text-align: center;
-    font-size: 3.5em;
 }
 #newGame{
     text-align: center;
