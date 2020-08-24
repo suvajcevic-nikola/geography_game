@@ -3,6 +3,7 @@ export class Game{
     constructor(user){
         this.username = user;
         this.terms = db.collection('pojmovi');
+        this.propsForTerms = db.collection('predlozi');
         this.results = db.collection('rezultati');
         this.userArr = [];
         this.computerArr = [];
@@ -79,7 +80,7 @@ export class Game{
             vreme: firebase.firestore.Timestamp.fromDate(date)
         }
 
-        let response = await this.terms.add(docProp);
+        let response = await this.propsForTerms.add(docProp);
         return response;
     }
 
