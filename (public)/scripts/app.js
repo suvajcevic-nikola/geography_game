@@ -87,8 +87,9 @@ usernameForm.addEventListener ('submit', e => {
     } else alert("Unesite korisničko ime");
 });
 
-playBtn.onclick = () => {
+let startGameVsComp = () => {
     if(checkUsername() != "anonymous"){
+
         intro.classList.add('show');
         title.classList.add("hidden");
         title.classList.add("fix");
@@ -127,6 +128,9 @@ playBtn.onclick = () => {
         document.getElementById("firstPlayer").innerHTML = `${localStorage.username}`;
 
     } else alert("Unesite korisničko ime");
+}
+playBtn.onclick = () => {
+    startGameVsComp();
 };
 
 multiplayBtn.onclick = () =>{
@@ -145,7 +149,6 @@ document.getElementById('newGameWithComp').onclick = () => {
 let timer = () => {
 
     if(gameEnd == false){
-    console.log(localStorage.firstLetter);
 
     user.checkUserAnswers(country.value, country.name, localStorage.firstLetter, 'user');
     user.checkUserAnswers(city.value, city.name, localStorage.firstLetter, 'user');
