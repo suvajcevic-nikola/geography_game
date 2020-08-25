@@ -18,11 +18,16 @@ proposition.addEventListener('submit', e => {
     if (pattern.test(term.value)) {
         user.checkTerm(term.value, category.value, data => {
             if(data) {
-                user.addProp(term.value, category.value).then( () => {
-                    proposition.reset();
-                });
+                user.checkProp(term.value, category.value, data => {
+                    if(data) {
+                        user.addProp(term.value, category.value).then( () => {
+                            proposition.reset();
+                        });
+                        alert("Uspešno dodat predlog!");
+                    } else alert("Pojam je već predložen");
+                })
             }
             else alert("Pojam vec postoji u bazi");
         });
-    } else alert("Neuspesno dodavanje predloga");
+    } else alert("Neuspešno dodavanje predloga");
 });

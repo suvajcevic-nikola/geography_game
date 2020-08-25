@@ -68,6 +68,25 @@ export class Game{
                   });
     }
 
+    checkProp(term, category, callback) {
+        let x = true;
+        this.propsForTerms
+                .where("pojam", "==", this.stringCheck(term))
+                .where("kategorija", "==", category)
+                .get()
+                .then( snapshot => {
+                    snapshot.docs.forEach( doc =>{
+                        if(doc.data()){
+                          x= false;
+                        }
+                    });
+                    callback(x);
+                  })
+                  .catch( error => {
+                    console.log(error);
+                  });
+    }
+
     async addProp(term, category){
 
         let date = new Date();
