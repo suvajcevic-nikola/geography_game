@@ -31,6 +31,12 @@ let checkUsername = () => {
 let user = new Game(checkUsername());
 export {user};
 
+window.onload = function() {
+    if(checkUsername() != "anonymous"){
+        document.getElementById('down').click();
+    };
+};
+
 let check = () => {
     if(checkUsername() != "anonymous"){
 
@@ -84,6 +90,7 @@ usernameForm.addEventListener ('submit', e => {
         user.updateUsername(usernameInput.value);
         usernameForm.reset();
         check();
+        document.getElementById('down').click();
     } else alert("Unesite korisničko ime");
 });
 
