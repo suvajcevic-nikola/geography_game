@@ -200,9 +200,11 @@ input[type=text], select {
 }
 #category {
     width: 50%;
+    font-size: 1em;
 }
 #term {
     width: 58.8%;
+    font-size: 1em;
 }
 #prop input[type=text], #prop select {
     width: 100%;
