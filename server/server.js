@@ -20,10 +20,13 @@ let username1;
 io.on('connection', (sock) => {
     if(waitingPlayer) {
         sock.on('username', username2 => {
-            if(username1 == username2 || username1 == undefined) {
+            if(username1 === username2 || username1 === undefined) {
                 username1 = username2;
                 waitingPlayer = sock;
                 waitingPlayer.emit('message', '<b id="wait">Čekamo protivnika...</b>');
+                sock.on('disconnect', () => {
+                    username1 = undefined;
+                });
             } else {
                 new multiplayer(waitingPlayer, sock);
                 waitingPlayer = null;
@@ -35,14 +38,8 @@ io.on('connection', (sock) => {
         waitingPlayer.on('username', username => {
             username1 = username;
         });
-        waitingPlayer.emit('message', '<b id="wait">Čekamo protivnika...</b>')
+        waitingPlayer.emit('message', '<b id="wait">Čekamo protivnika...</b>');
     }
-
-    sock.on('disconnect', function(){
-      io.emit('message', '<b id="playerDisconnect">Protivnik je napustio igru!</b>');
-      io.emit('disc', 'disc');
-      waitingPlayer = null;
-    });
 
     sock.on('message', (text) => {
       io.emit('message', text);

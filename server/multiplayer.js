@@ -13,6 +13,17 @@ class Multiplayer {
         this._onInput(idx, input);
       });
     });
+
+    this._players.forEach(socket => {
+      socket.on('disconnect', () => {
+          this._players.forEach(sock => {
+              if (socket !== sock) {
+                  sock.emit('message', '<b id="playerDisconnect">Protivnik je napustio igru!</b>');
+                  sock.emit('disc', 'disc');
+              }
+          });
+      });
+    });
     }
 
     _sendToPlayer(playerIndex, msg) {

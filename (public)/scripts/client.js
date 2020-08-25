@@ -12,10 +12,6 @@ const writeEvent = (text) => {
     document.getElementById("ullist").appendChild(el);
 };
 
-// if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
-
-//   }
-
 const log = (value) => {
     let category = ['username', 'Država', 'Grad', 'Reka', 'Planina', 'Životinja', 'Biljka', 'Predmet'];
     value.forEach((array, j) => {
