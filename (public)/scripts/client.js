@@ -109,10 +109,10 @@ const disc = (value) =>{
 }
 
 // **********temp**********
-window.onload = function() {
-    window.location.href = "../multiplayer.html";
-    window.stop();
-};
+// window.onload = function() {
+//     window.location.href = "../multiplayer.html";
+//     window.stop();
+// };
 
 const sock = io();
 sock.on('message', writeEvent);
